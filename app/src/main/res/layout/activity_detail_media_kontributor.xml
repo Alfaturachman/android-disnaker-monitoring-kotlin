@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/grey_100">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageButton
+                        android:id="@+id/btnKembali"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:adjustViewBounds="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_chevron_left" />
+
+                    <TextView
+                        android:id="@+id/title_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        android:text="Detail Media"
+                        android:textColor="@color/grey_950"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rectangle_background"
+                android:backgroundTint="@color/white"
+                android:padding="16dp"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Judul Media"
+                    android:textColor="@color/grey_950"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvJudulMedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Perangkat Lunak"
+                    android:textColor="@color/grey_950"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="URL Media"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvUrlMedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="www"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Status"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Disetujui"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Tanggal Upload Media"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvTanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="24 Januari 2025, 10:00 WIB"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Deskripsi Kasus"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvDeskripsiKasus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Kasus ini mengenai sengketa tanah antara dua pihak."
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Total Tayangan Media"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="5 tayangan"
+                    android:textColor="@color/grey_950"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
