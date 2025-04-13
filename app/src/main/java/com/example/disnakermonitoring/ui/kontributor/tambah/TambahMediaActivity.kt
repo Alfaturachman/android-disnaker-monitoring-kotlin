@@ -2,6 +2,7 @@ package com.example.disnakermonitoring.ui.kontributor.tambah
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -36,6 +37,7 @@ import java.io.FileInputStream
 
 class TambahMediaActivity : AppCompatActivity() {
 
+    private var idUser: Int = -1
     private var selectedKategoriId: Int = 0
     private lateinit var etNamaMedia: TextInputEditText
     private lateinit var etJudulMedia: TextInputEditText
@@ -65,6 +67,8 @@ class TambahMediaActivity : AppCompatActivity() {
         spinnerKategoriMedia = findViewById(R.id.spinnerKategoriMedia)
         etDeskripsiMedia = findViewById(R.id.etDeskripsiMedia)
         tvNamaFileGambar = findViewById(R.id.tvNamaFileGambar)
+
+        idUser = getUserIdFromSharedPreferences()
 
         // Button Kembali
         val btnKembali: ImageButton = findViewById(R.id.btnKembali)
@@ -160,7 +164,8 @@ class TambahMediaActivity : AppCompatActivity() {
         val urlPart = MultipartBody.Part.createFormData("url", urlMedia)
         val deskripsiPart = MultipartBody.Part.createFormData("deskripsi", deskripsiMedia)
 
-        RetrofitClient.instance.tambahMediaAdmin(
+        RetrofitClient.instance.tambahMediaKontributor(
+            idUser,
             idKategoriPart,
             namaPart,
             judulPart,
@@ -237,5 +242,10 @@ class TambahMediaActivity : AppCompatActivity() {
         val mimeType = contentResolver.getType(uri) ?: "image/*"
         val requestFile = file.asRequestBody(mimeType.toMediaTypeOrNull())
         return MultipartBody.Part.createFormData("gambar", file.name, requestFile)
+    }
+
+    private fun getUserIdFromSharedPreferences(): Int {
+        val sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        return sharedPreferences.getInt("id_user", -1)
     }
 }

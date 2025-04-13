@@ -7,6 +7,8 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/app/src/main/res/layout/
+/app/src/main/java/com/example/repro/ui/auth/
 .DS_Store
 /build
 /captures

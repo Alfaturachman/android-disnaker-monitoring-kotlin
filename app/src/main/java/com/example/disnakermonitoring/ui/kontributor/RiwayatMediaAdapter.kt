@@ -1,17 +1,24 @@
 package com.example.disnakermonitoring.ui.kontributor
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.disnakermonitoring.R
 import com.example.disnakermonitoring.model.Media
 import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.ui.kontributor.detail.DetailMediaActivity
 
-class RiwayatMediaAdapter(private var mediaList: List<Media>) : RecyclerView.Adapter<RiwayatMediaAdapter.MediaViewHolder>() {
+class RiwayatMediaAdapter(
+    private var mediaList: List<Media>,
+    private val startForResult: ActivityResultLauncher<Intent>,
+    ) : RecyclerView.Adapter<RiwayatMediaAdapter.MediaViewHolder>() {
 
     // ViewHolder untuk Media
     class MediaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,7 +26,8 @@ class RiwayatMediaAdapter(private var mediaList: List<Media>) : RecyclerView.Ada
         val tvKategori: TextView = itemView.findViewById(R.id.tvKategori)
         val tvStatus: TextView = itemView.findViewById(R.id.tvStatus)
         val tvTanggal: TextView = itemView.findViewById(R.id.tvTanggal)
-        val ivMedia: ImageView = itemView.findViewById(R.id.ivMedia) // Tambahkan ImageView
+        val ivMedia: ImageView = itemView.findViewById(R.id.ivMedia)
+        val cardView: View = itemView.findViewById(R.id.cardView)
     }
 
     // Update data adapter
@@ -35,10 +43,20 @@ class RiwayatMediaAdapter(private var mediaList: List<Media>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: MediaViewHolder, position: Int) {
         val media = mediaList[position]
+        val context = holder.itemView.context
 
         holder.tvJudul.text = media.judul
-        holder.tvKategori.text = "Kategori: ${media.id_kategori}"
+        holder.tvKategori.text = "Kategori: ${getKategoriName(media.id_kategori)}"
+
+        // Status
         holder.tvStatus.text = "Status: ${media.status}"
+        val statusColor = when (media.status) {
+            "belum disetujui" -> R.color.badge_warning
+            "disetujui" -> R.color.badge_success
+            "tolak" -> R.color.badge_danger
+            else -> R.color.badge_secondary
+        }
+        holder.tvStatus.backgroundTintList = ContextCompat.getColorStateList(context, statusColor)
         holder.tvTanggal.text = "Tanggal: ${media.tanggal}"
 
         // Load gambar dengan Glide
@@ -47,6 +65,28 @@ class RiwayatMediaAdapter(private var mediaList: List<Media>) : RecyclerView.Ada
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
             .into(holder.ivMedia)
+
+        // Button CardView
+        holder.cardView.setOnClickListener {
+            val intent = Intent(context, DetailMediaActivity::class.java).apply {
+                putExtra("id_media", media.id)
+            }
+            startForResult.launch(intent)
+        }
+    }
+
+    private fun getKategoriName(id: Int?): String {
+        return when (id) {
+            1 -> "Lowongan"
+            2 -> "Pelatihan"
+            3 -> "Bisnis"
+            4 -> "UMKM"
+            5 -> "Pabrik"
+            6 -> "Buruh"
+            7 -> "PHK"
+            8 -> "Mediasi"
+            else -> "Tidak Diketahui"
+        }
     }
 
     override fun getItemCount(): Int {

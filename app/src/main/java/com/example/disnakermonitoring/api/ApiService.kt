@@ -22,8 +22,9 @@ interface ApiService {
 
     // Kontributor
     @Multipart
-    @POST("post_media_admin.php")
-    fun tambahMediaAdmin(
+    @POST("post_media_kontributor.php")
+    fun tambahMediaKontributor(
+        @Part id_user: Int,
         @Part id_kategori: MultipartBody.Part,
         @Part nama: MultipartBody.Part,
         @Part judul: MultipartBody.Part,

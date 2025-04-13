@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="2dp"
@@ -45,19 +47,23 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="2dp"
+                    android:paddingHorizontal="12dp"
+                    android:background="@drawable/badge"
+                    android:text="Disetujui"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
                     android:id="@+id/tvKategori"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Kategori: "
-                    android:textColor="@color/grey_700" />
-
-                <TextView
-                    android:id="@+id/tvStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Status: "
                     android:textColor="@color/grey_700" />
 
                 <TextView

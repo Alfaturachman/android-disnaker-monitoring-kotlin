@@ -1,11 +1,13 @@
 package com.example.disnakermonitoring.ui.kontributor
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -21,8 +23,16 @@ import retrofit2.Response
 
 class RiwayatMediaActivity : AppCompatActivity() {
 
+    private var idUser: Int = -1
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RiwayatMediaAdapter
+
+    // ActivityResultLauncher untuk menangkap hasil dari aktivitas lain
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            refreshData()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +55,11 @@ class RiwayatMediaActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Inisialisasi Adapter
-        adapter = RiwayatMediaAdapter(emptyList())
+        adapter = RiwayatMediaAdapter(emptyList(), startForResult)
         recyclerView.adapter = adapter
 
         // Ambil id_user dari SharedPreferences
-        val idUser = getUserIdFromSharedPreferences()
+        idUser = getUserIdFromSharedPreferences()
         if (idUser != -1) {
             fetchMediaKontributor(idUser)
         } else {
@@ -94,5 +104,9 @@ class RiwayatMediaActivity : AppCompatActivity() {
     private fun getUserIdFromSharedPreferences(): Int {
         val sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
         return sharedPreferences.getInt("id_user", -1)
+    }
+
+    private fun refreshData() {
+        fetchMediaKontributor(idUser)
     }
 }
