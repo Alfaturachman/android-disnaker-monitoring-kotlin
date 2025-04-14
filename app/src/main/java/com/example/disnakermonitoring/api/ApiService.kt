@@ -2,6 +2,7 @@ package com.example.arsipsurat.api
 
 import com.example.disnakermonitoring.model.Media
 import com.example.disnakermonitoring.model.TambahMedia
+import com.example.disnakermonitoring.model.TotalRekapData
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -21,6 +22,10 @@ interface ApiService {
     fun registerUser(@Body body: RequestBody): Call<ResponseBody>
 
     // Kontributor
+    @Headers("Content-Type: application/json")
+    @POST("get_rekap_kontributor.php")
+    fun TotalDataKontributor(@Body requestBody: HashMap<String, Int>): Call<ApiResponse<TotalRekapData>>
+
     @Multipart
     @POST("post_media_kontributor.php")
     fun tambahMediaKontributor(
