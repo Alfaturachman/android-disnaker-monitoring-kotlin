@@ -70,9 +70,19 @@ class RiwayatMediaAdapter(
         holder.cardView.setOnClickListener {
             val intent = Intent(context, DetailMediaActivity::class.java).apply {
                 putExtra("id_media", media.id)
+                putExtra("id_kategori", media.id_kategori)
+                putExtra("nama", media.nama)
+                putExtra("judul", media.judul)
+                putExtra("url", media.url)
+                putExtra("status", media.status)
+                putExtra("tanggal", media.tanggal)
+                putExtra("gambar", media.gambar)
+                putExtra("deskripsi", media.deskripsi)
+                putExtra("view", media.view)
             }
             startForResult.launch(intent)
         }
+
     }
 
     private fun getKategoriName(id: Int?): String {
