@@ -1,6 +1,7 @@
 package com.example.arsipsurat.api
 
 import com.example.disnakermonitoring.model.Media
+import com.example.disnakermonitoring.model.StatsTotalData
 import com.example.disnakermonitoring.model.TambahMedia
 import com.example.disnakermonitoring.model.TotalRekapData
 import okhttp3.MultipartBody
@@ -26,6 +27,10 @@ interface ApiService {
     @POST("get_rekap_kontributor.php")
     fun TotalDataKontributor(@Body requestBody: HashMap<String, Int>): Call<ApiResponse<TotalRekapData>>
 
+    @Headers("Content-Type: application/json")
+    @POST("get_stats_kontributor.php")
+    fun StatsDataKontributor(@Body requestBody: HashMap<String, Int>): Call<ApiResponse<List<StatsTotalData>>>
+
     @Multipart
     @POST("post_media_kontributor.php")
     fun tambahMediaKontributor(
@@ -41,4 +46,13 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("get_media_kontributor.php")
     fun riwayatMediaKontributor(@Body request: Map<String, Int>): Call<ApiResponse<List<Media>>>
+
+    // Pemimpin
+    @Headers("Content-Type: application/json")
+    @POST("get_rekap_pemimpin.php")
+    fun TotalDataPemimpin(@Body requestBody: HashMap<String, Int>): Call<ApiResponse<TotalRekapData>>
+
+    @Headers("Content-Type: application/json")
+    @POST("get_stats_pemimpin.php")
+    fun StatsDataPemimpin(@Body requestBody: HashMap<String, Int>): Call<ApiResponse<List<StatsTotalData>>>
 }
