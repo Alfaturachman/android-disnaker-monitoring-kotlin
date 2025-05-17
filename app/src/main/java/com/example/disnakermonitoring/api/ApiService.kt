@@ -1,4 +1,4 @@
-package com.example.arsipsurat.api
+package com.example.disnakermonitoring.api
 
 import com.example.disnakermonitoring.model.Media
 import com.example.disnakermonitoring.model.StatsTotalData

@@ -12,8 +12,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.arsipsurat.api.ApiResponse
-import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.api.ApiResponse
+import com.example.disnakermonitoring.api.RetrofitClient
 import com.example.disnakermonitoring.databinding.FragmentHomeBinding
 import com.example.disnakermonitoring.model.StatsTotalData
 import com.example.disnakermonitoring.model.TotalRekapData

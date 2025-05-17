@@ -1,4 +1,4 @@
-package com.example.arsipsurat.api
+package com.example.disnakermonitoring.api
 
 import com.google.gson.annotations.SerializedName
 

@@ -20,8 +20,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.example.arsipsurat.api.ApiResponse
-import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.api.ApiResponse
+import com.example.disnakermonitoring.api.RetrofitClient
 import com.example.disnakermonitoring.R
 import com.example.disnakermonitoring.model.TambahMedia
 import com.example.disnakermonitoring.ui.kontributor.RiwayatMediaActivity

@@ -14,7 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.api.RetrofitClient
 import com.example.disnakermonitoring.MainActivity
 import com.example.disnakermonitoring.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

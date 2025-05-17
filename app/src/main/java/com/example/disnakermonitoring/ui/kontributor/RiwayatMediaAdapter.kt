@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.disnakermonitoring.R
 import com.example.disnakermonitoring.model.Media
-import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.api.RetrofitClient
 import com.example.disnakermonitoring.ui.kontributor.detail.DetailMediaActivity
 
 class RiwayatMediaAdapter(

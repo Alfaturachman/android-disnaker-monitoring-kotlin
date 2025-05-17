@@ -13,8 +13,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.arsipsurat.api.ApiResponse
-import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.api.ApiResponse
+import com.example.disnakermonitoring.api.RetrofitClient
 import com.example.disnakermonitoring.R
 import com.example.disnakermonitoring.model.Media
 import retrofit2.Call

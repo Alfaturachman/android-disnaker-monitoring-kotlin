@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.arsipsurat.api.RetrofitClient
+import com.example.disnakermonitoring.api.RetrofitClient
 import com.example.disnakermonitoring.R
 import com.google.android.material.textfield.TextInputEditText
 import okhttp3.MediaType.Companion.toMediaType

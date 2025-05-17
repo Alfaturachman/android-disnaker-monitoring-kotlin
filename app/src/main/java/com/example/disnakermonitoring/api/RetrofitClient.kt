@@ -1,6 +1,6 @@
-package com.example.arsipsurat.api
+package com.example.disnakermonitoring.api
 
-import com.example.arsipsurat.api.ApiService
+import com.example.disnakermonitoring.api.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
