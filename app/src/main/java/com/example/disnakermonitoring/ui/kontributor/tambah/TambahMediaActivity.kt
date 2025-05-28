@@ -190,6 +190,7 @@ class TambahMediaActivity : AppCompatActivity() {
 
                         Toast.makeText(this@TambahMediaActivity, "Media berhasil disimpan!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@TambahMediaActivity, RiwayatMediaActivity::class.java)
+                        setResult(RESULT_OK)
                         startActivity(intent)
                         finish()
                     } else {

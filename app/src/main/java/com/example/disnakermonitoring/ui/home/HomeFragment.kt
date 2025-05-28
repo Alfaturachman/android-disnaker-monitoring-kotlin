@@ -67,15 +67,14 @@ class HomeFragment : Fragment() {
         tvNama.text = "Selamat Datang, $userNama"
 
         // Level dari SharedPreferences
+        fetchAdminTotalData(idUser)
+        statsData(idUser)
+
         val level = getLevelFromSharedPreferences()
         when (level) {
             "kontributor" -> {
                 fetchKontributorTotalData(idUser)
                 kontributorStatsData(idUser)
-            }
-            "pemimpin" -> {
-                fetchPemimpinTotalData(idUser)
-                pemimpinStatsData(idUser)
             }
             else -> {
                 Toast.makeText(requireContext(), "Level pengguna tidak valid", Toast.LENGTH_SHORT).show()
@@ -277,7 +276,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun fetchPemimpinTotalData(userId: Int) {
+    private fun fetchAdminTotalData(userId: Int) {
         val requestBody = hashMapOf("id_user" to userId)
 
         RetrofitClient.instance.TotalDataPemimpin(requestBody)
@@ -317,7 +316,7 @@ class HomeFragment : Fragment() {
             })
     }
 
-    private fun pemimpinStatsData(userId: Int) {
+    private fun statsData(userId: Int) {
         // Buat request body
         val requestBody = HashMap<String, Int>()
         requestBody["id_user"] = userId

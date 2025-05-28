@@ -47,6 +47,10 @@ interface ApiService {
     @POST("get_media_kontributor.php")
     fun riwayatMediaKontributor(@Body request: Map<String, Int>): Call<ApiResponse<List<Media>>>
 
+    @Headers("Content-Type: application/json")
+    @POST("get_media_admin.php")
+    fun fetchMediaAdmin(@Body request: Map<String, Int>): Call<ApiResponse<List<Media>>>
+
     // Pemimpin
     @Headers("Content-Type: application/json")
     @POST("get_rekap_pemimpin.php")

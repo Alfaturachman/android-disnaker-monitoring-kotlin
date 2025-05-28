@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -58,12 +59,21 @@ class RiwayatMediaActivity : AppCompatActivity() {
         adapter = RiwayatMediaAdapter(emptyList(), startForResult)
         recyclerView.adapter = adapter
 
-        // Ambil id_user dari SharedPreferences
         idUser = getUserIdFromSharedPreferences()
-        if (idUser != -1) {
-            fetchMediaKontributor(idUser)
-        } else {
-            Log.e("RiwayatMedia", "ID User tidak ditemukan di SharedPreferences")
+        val level = getLevelFromSharedPreferences()
+        when (level) {
+            "admin" -> {
+                fetchMediaAdmin(idUser)
+            }
+            "pemimpin" -> {
+                fetchMediaAdmin(idUser)
+            }
+            "kontributor" -> {
+                fetchMediaKontributor(idUser)
+            }
+            else -> {
+                Toast.makeText(this, "Level pengguna tidak valid", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -101,9 +111,48 @@ class RiwayatMediaActivity : AppCompatActivity() {
         })
     }
 
+    private fun fetchMediaAdmin(idUser: Int) {
+        val requestBody = hashMapOf("id_user" to idUser)
+
+        Log.d("RiwayatMedia", "Mengirim request ke server dengan body: $requestBody")
+
+        val call = RetrofitClient.instance.fetchMediaAdmin(requestBody)
+        call.enqueue(object : Callback<ApiResponse<List<Media>>> {
+            override fun onResponse(
+                call: Call<ApiResponse<List<Media>>>,
+                response: Response<ApiResponse<List<Media>>>
+            ) {
+                Log.d("RiwayatMedia", "Response diterima dengan kode: ${response.code()}")
+
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody?.status == true) {
+                        Log.d("RiwayatMedia", "Data berhasil diterima: ${responseBody.data}")
+                        responseBody.data?.let {
+                            adapter.updateData(it)
+                        }
+                    } else {
+                        Log.e("RiwayatMedia", "Gagal mendapatkan data: ${responseBody?.message}")
+                    }
+                } else {
+                    Log.e("RiwayatMedia", "Request gagal dengan kode: ${response.code()}, pesan: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse<List<Media>>>, t: Throwable) {
+                Log.e("RiwayatMedia", "Gagal menghubungi server: ${t.localizedMessage}", t)
+            }
+        })
+    }
+
     private fun getUserIdFromSharedPreferences(): Int {
         val sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
         return sharedPreferences.getInt("id_user", -1)
+    }
+
+    private fun getLevelFromSharedPreferences(): String? {
+        val sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("level", "0")
     }
 
     private fun refreshData() {

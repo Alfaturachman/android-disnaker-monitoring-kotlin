@@ -2,6 +2,7 @@ package com.example.disnakermonitoring.ui.kontributor.detail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,12 @@ class DetailMediaActivity : AppCompatActivity() {
         // Set status bar color dan mode light
         window.statusBarColor = resources.getColor(R.color.white, theme)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+        // Button Kembali
+        val btnKembali: ImageButton = findViewById(R.id.btnKembali)
+        btnKembali.setOnClickListener {
+            finish()
+        }
 
         // Ambil data dari intent
         val judul = intent.getStringExtra("judul")

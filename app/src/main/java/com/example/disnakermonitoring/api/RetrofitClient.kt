@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private val ip: String = "192.168.1.8"
+    private val ip: String = "192.168.41.122"
 
     private val BASE_URL = "http://$ip/disnaker-monitoring/api/"
 
